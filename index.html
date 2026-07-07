@@ -86,7 +86,7 @@
   }
   h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
   .updated { color: var(--text-muted); font-size: 0.85rem; margin: 0 0 28px; }
-  h2 { font-size: 1.02rem; font-weight: 700; margin: 26px 0 10px; color: var(--lime-bright); }
+  h2 { font-size: 1.02rem; font-weight: 700; margin: 26px 0 10px; color: var(--lime-bright); scroll-margin-top: 24px; }
   h2:first-of-type { margin-top: 0; }
   p { color: var(--text-muted); margin: 0 0 12px; font-size: 0.94rem; }
   ul { margin: 0 0 12px; padding-left: 1.2em; color: var(--text-muted); font-size: 0.94rem; }
@@ -95,6 +95,11 @@
   a { color: var(--lime); }
   section { display: none; }
   section.active { display: block; }
+  .highlight-target { animation: highlightFade 2.5s ease-out; }
+  @keyframes highlightFade {
+    0% { background: rgba(187,216,5,0.18); border-radius: 8px; }
+    100% { background: transparent; }
+  }
 
   footer { margin-top: 32px; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
   footer a { color: var(--text-muted); }
@@ -144,7 +149,7 @@
       <h2>Cuánto tiempo conservamos tus datos</h2>
       <p>Conservamos tus datos mientras tu cuenta permanezca activa. Si solicitas la eliminación de tu cuenta, se elimina de forma permanente en un plazo máximo de 30 días.</p>
 
-      <h2>Eliminar tu cuenta y tus datos</h2>
+      <h2 id="delete-account-es">Eliminar tu cuenta y tus datos</h2>
       <p>Puedes solicitar la eliminación completa de tu cuenta y todos los datos asociados (perfil, historial de tests, pertenencia a ligas) enviando un correo a <a href="mailto:multometroapp@gmail.com?subject=Eliminar%20mi%20cuenta%20de%20Rebitz">multometroapp@gmail.com</a> desde el email asociado a tu cuenta, indicando "Eliminar mi cuenta de Rebitz".</p>
 
       <h2>Menores de edad</h2>
@@ -181,7 +186,7 @@
       <h2>How long we keep your data</h2>
       <p>We retain your data for as long as your account remains active. If you request account deletion, it is permanently deleted within 30 days.</p>
 
-      <h2>Deleting your account and data</h2>
+      <h2 id="delete-account-en">Deleting your account and data</h2>
       <p>You can request full deletion of your account and all associated data (profile, quiz history, league memberships) by emailing <a href="mailto:multometroapp@gmail.com?subject=Delete%20my%20Rebitz%20account">multometroapp@gmail.com</a> from the email address associated with your account, stating "Delete my Rebitz account".</p>
 
       <h2>Children's privacy</h2>
@@ -210,7 +215,21 @@
     document.getElementById('updated').textContent = lang === 'es' ? 'Última actualización: 7 de julio de 2026' : 'Last updated: July 7, 2026';
     document.documentElement.lang = lang;
   }
+
+  function goToDeletionSection() {
+    var hash = window.location.hash.replace('#', '');
+    if (hash !== 'delete-account') return;
+    var target = document.getElementById('delete-account-es');
+    if (target) {
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.classList.add('highlight-target');
+      }, 50);
+    }
+  }
+
   showLang('es');
+  goToDeletionSection();
 </script>
 </body>
 </html>
