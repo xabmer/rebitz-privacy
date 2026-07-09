@@ -201,7 +201,7 @@
   </div>
 
   <footer>
-    <p><a href="https://rebitz.vercel.app/">← Volver a Rebitz</a></p>
+    <p><a id="back-link" href="https://rebitz.vercel.app/">← Volver a Rebitz</a></p>
   </footer>
 </div>
 
@@ -213,6 +213,7 @@
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('title').textContent = lang === 'es' ? 'Política de Privacidad de Rebitz' : 'Rebitz Privacy Policy';
     document.getElementById('updated').textContent = lang === 'es' ? 'Última actualización: 8 de julio de 2026' : 'Last updated: July 8, 2026';
+    document.getElementById('back-link').textContent = lang === 'es' ? '← Volver a Rebitz' : '← Back to Rebitz';
     document.documentElement.lang = lang;
   }
 
